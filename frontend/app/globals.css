@@ -1,0 +1,91 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --bg-cream: #FAF7F2;
+    --card-cream: #FFFFFF;
+    --border-cream: #EAE3D2;
+    --text-primary: #1E1A14;
+    --text-muted: #756B5D;
+  }
+
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  html {
+    font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    background-color: #FAF7F2;
+    color: #1E1A14;
+  }
+
+  body {
+    background-color: #FAF7F2;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  /* Custom cream scrollbar */
+  ::-webkit-scrollbar {
+    width: 4px;
+    height: 4px;
+  }
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: #D8CEBC;
+    border-radius: 9999px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: #B8A990;
+  }
+}
+
+@layer components {
+  /* Warm Cream Cards */
+  .rich-card {
+    background: #FFFFFF;
+    border: 1px solid #EAE3D2;
+    border-radius: 1.25rem;
+    box-shadow: 0 6px 20px -3px rgba(60, 45, 30, 0.05);
+  }
+
+  .rich-card-interactive {
+    @apply rich-card transition-all duration-150 hover:border-[#D8CEBC] hover:shadow-cream active:scale-[0.98] cursor-pointer;
+  }
+
+  /* Espresso & Warm Caramel Buttons */
+  .btn-electric {
+    @apply relative inline-flex items-center justify-center gap-2 overflow-hidden rounded-xl bg-[#1E1A14] px-5 py-3 text-xs font-bold uppercase tracking-wider text-[#FAF7F2] shadow-md shadow-stone-900/15 transition-all duration-150 hover:bg-[#2E2820] hover:shadow-lg active:scale-[0.97] disabled:opacity-40 disabled:cursor-not-allowed;
+  }
+
+  .btn-glass {
+    @apply inline-flex items-center justify-center gap-2 rounded-xl border border-[#EAE3D2] bg-[#FAF7F2] px-4 py-2.5 text-xs font-semibold text-[#1E1A14] transition-all duration-150 hover:bg-[#F2ECE1] hover:border-[#D8CEBC] active:scale-[0.97];
+  }
+
+  /* Inputs */
+  .rich-input {
+    @apply w-full rounded-xl border border-[#EAE3D2] bg-[#F7F3EB] px-3.5 py-3 text-sm text-[#1E1A14] placeholder-[#9E9484] outline-none transition-all duration-150 focus:border-[#9A6B3A] focus:bg-[#FFFFFF] focus:ring-2 focus:ring-[#9A6B3A]/15;
+  }
+
+  /* Badges */
+  .badge-glow-blue {
+    @apply inline-flex items-center gap-1.5 rounded-full border border-[#DCE4EC] bg-[#EDF3F8] px-3 py-1 text-xs font-bold text-[#1E3A5F];
+  }
+
+  .badge-glow-emerald {
+    @apply inline-flex items-center gap-1.5 rounded-full border border-[#D5EBDC] bg-[#EDF7F0] px-3 py-1 text-xs font-bold text-[#1E5631];
+  }
+
+  .badge-glow-amber {
+    @apply inline-flex items-center gap-1.5 rounded-full border border-[#F5E6CD] bg-[#FDF6E9] px-3 py-1 text-xs font-bold text-[#8A5012];
+  }
+}

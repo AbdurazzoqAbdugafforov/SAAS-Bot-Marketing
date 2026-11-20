@@ -1,0 +1,69 @@
+// ============================================
+// BiznesOS AI — Prisma Schema
+// ============================================
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+// --- Foydalanuvchi ---
+model User {
+  id              Int              @id @default(autoincrement())
+  telegramId      BigInt           @unique
+  name            String?
+  username        String?
+  createdAt       DateTime         @default(now())
+  updatedAt       DateTime         @updatedAt
+
+  businessProfile BusinessProfile?
+  subscription    Subscription?
+  posts           Post[]
+}
+
+// --- Biznes Profili ---
+model BusinessProfile {
+  id           Int      @id @default(autoincrement())
+  userId       Int      @unique
+  businessType String   // barber, cafe, education, beauty, gym, restaurant, shop, clinic, auto, other
+  name         String
+  address      String?
+  workingHours String?  // masalan: "09:00 - 21:00"
+  description  String?
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+// --- Obuna ---
+model Subscription {
+  id        Int       @id @default(autoincrement())
+  userId    Int       @unique
+  plan      String    @default("free") // free, pro, premium
+  status    String    @default("active") // active, expired, cancelled
+  expiresAt DateTime?
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+// --- Yaratilgan Postlar Tarixi ---
+model Post {
+  id           Int      @id @default(autoincrement())
+  userId       Int
+  businessType String
+  topic        String
+  postType     String   @default("promo") // promo, info, story, announce
+  platform     String   @default("both")  // instagram, telegram, both
+  content      String
+  imageUrl     String?
+  createdAt    DateTime @default(now())
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
