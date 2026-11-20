@@ -1,0 +1,14 @@
+{
+  "name": "saas-bot-marketing",
+  "version": "1.0.0",
+  "description": "BiznesOS AI — SaaS Bot Marketing",
+  "private": true,
+  "main": "backend/src/index.js",
+  "scripts": {
+    "install:backend": "cd backend && npm install",
+    "install:frontend": "cd frontend && npm install",
+    "postinstall": "cd backend && npm install && npx prisma generate",
+    "build": "cd backend && npx prisma generate",
+    "start": "cd backend && node src/index.js"
+  }
+}
